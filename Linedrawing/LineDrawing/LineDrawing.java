@@ -229,20 +229,7 @@ public class LineDrawing implements RasterListener
 	{
             boolean swap = Math.abs(endRow-startRow) > Math.abs(endCol-startCol);
 
-		// swap x and y if needed, to make sure that the slope is less than 1
-		// Why is this necessary?
-		if(swap)
-		{
-			int save;
-			
-			save = startCol;
-			startCol = startRow;
-			startRow = save;
-			
-			save = endCol;
-			endCol = endRow;
-			endRow = save;
-		}
+		
 
 		// the slope
 		double m = (endRow-startRow)/(double)(endCol-startCol);
@@ -256,57 +243,22 @@ public class LineDrawing implements RasterListener
                         
                         
                         raster.putPixel(row, col);
-                        col = col + (Math.abs(m));
+                        col = col + (int)Math.round(m);
                     }
                     }
                 else {
-                    
+                    int col = startCol;
+                    m = 1/m;
+                   int row = startRow;
+                     for(int colcount = col; colcount < endCol; col++) {
+                         
+                         raster.putPixel(row, col);
+                         row = row + (int)Math.round(m);
+                         
+                     }
+                     }         
                 }
-                }
-		
-		// handles left-to-right or right-to-left
-		
-		
-		// fill in the starting pixel
-		int col = startCol;
-
-		if(swap)
-			raster.putPixel(startRow, col);
-		else
-			raster.putPixel(col, startRow);
-		
-		// now step along, calculating the y value for each x value as we go
-		while(col != endCol)
-		{
-			col += xInc;
-			// here's the other half of the swap x and y trick
-			if(swap)
-			{
-				raster.putPixel
-				(
-					startRow + (int)Math.round(m*(col-startCol)),
-					col
-				);			
-			}
-			else
-			{
-				raster.putPixel
-				(
-					col,
-					startRow + (int)Math.round(m*(col-startCol))
-				);
-			}
-		}
-	}
-	
-	/*
-	 * 
-	 * @param startCol - x coordinate of first endpoint
-	 * @param startRow - y coordinate of first endpoint
-	 * @param endCol - x coordinate of second endpoint
-	 * @param endRow - y coordinate of second endpoint
-	 * 
-	 */
+                
 	private void drawBresenhamLine(int startCol, int startRow, int endCol, int endRow)
 	{
 	}
