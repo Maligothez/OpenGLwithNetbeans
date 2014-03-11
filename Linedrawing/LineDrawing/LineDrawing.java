@@ -211,36 +211,46 @@ public class LineDrawing implements RasterListener {
      * @param endRow - y coordinate of second endpoint
      * 
      */
-    private void drawDDALine(int startCol, int startRow, int endCol, int endRow) {
-        // the slope
-//        double m = (endRow - startRow) / (double) (endCol - startCol);
-//        double y = startRow;
-//        double x = startCol;
-//        if (Math.abs(m) <= 1){    
-//            double xInc = (startCol < endCol) ? 1 : -1;
-//            raster.putPixel((int) x, (int) y);
-//            while (x != endCol)
-//            {
-//                x += xInc;
-//                y += m*xInc;
-//
-//                raster.putPixel((int) x, (int) y);
-//
-//            }
-//        } else {
-//            double yInc = (startRow < endRow) ? 1 : -1;
-//            double invertM = 1.0/m;
-//            raster.putPixel((int) x, (int) y);
-//            while (y != endRow)
-//            {
-//                y += yInc;
-//                x = x + invertM*yInc;
-//                raster.putPixel((int) x, (int) y);
-//
-//            } 
-//        }
-        
-        drawDDATest(startCol, startRow, endCol, endRow);
+    private void drawDDALine(int x1, int y1, int x2, int y2) {
+        if (Math.abs(y2 - y1) <= Math.abs(x2 - x1)) {
+            if (x2 < x1) {
+                int tmp = x2;
+                x2 = x1;
+                x1 = tmp;
+
+                tmp = y2;
+                y2 = y1;
+                y1 = tmp;
+            }
+            double m = (double)(y2-y1)/(x2-x1); 
+            int cell_y;           
+            double y = (double)y1;
+            for (int x = x1 ; x <= x2 ; x++) {
+                cell_y = (int)Math.round(y);
+                raster.putPixel(x, cell_y);
+                y += m;
+            }
+        }
+        else {
+            if (y2 < y1) {
+                int tmp = x2;
+                x2 = x1;
+                x1 = tmp;
+
+                tmp = y2;
+                y2 = y1;
+                y1 = tmp;
+            }
+
+            double m = (double)(x2-x1)/(y2-y1);
+            int cell_x;
+            double x = (double)x1;
+            for (int y = y1; y <= y2; y++) {
+                cell_x = (int)Math.round(x);
+                raster.putPixel(cell_x, y);
+                x += m;
+            }
+        }
     }
     
     private void drawDDATest(int x1, int y1, int x2, int y2){
