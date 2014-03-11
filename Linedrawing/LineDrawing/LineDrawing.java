@@ -223,11 +223,9 @@ public class LineDrawing implements RasterListener {
                 y1 = tmp;
             }
             double m = (double)(y2-y1)/(x2-x1); 
-            int cell_y;           
             double y = (double)y1;
             for (int x = x1 ; x <= x2 ; x++) {
-                cell_y = (int)Math.round(y);
-                raster.putPixel(x, cell_y);
+                raster.putPixel(x, (int)Math.round(y));
                 y += m;
             }
         }
@@ -243,66 +241,11 @@ public class LineDrawing implements RasterListener {
             }
 
             double m = (double)(x2-x1)/(y2-y1);
-            int cell_x;
             double x = (double)x1;
             for (int y = y1; y <= y2; y++) {
-                cell_x = (int)Math.round(x);
-                raster.putPixel(cell_x, y);
+                raster.putPixel((int)Math.round(x), y);
                 x += m;
             }
-        }
-    }
-    
-    private void drawDDATest(int x1, int y1, int x2, int y2){
-        double dx = x2-x1;
-        double dy = y2-y1;
-
-        if (Math.abs(y2 - y1) <= Math.abs(x2 - x1)) {
-
-            if ((x1 == x2) && (y1 == y2)) {
-                raster.putPixel(x1, y1);
-
-            } else {
-                if (x2 < x1) {
-                    int tmp = x2;
-                    x2 = x1;
-                    x1 = tmp;
-
-                    tmp = y2;
-                    y2 = y1;
-                    y1 = tmp;
-                }
-
-                double k = (double)dy/dx; 
-                int cele_y;           
-                double y = (double)y1;
-
-                for (int x = x1 ; x <= x2 ; x++) {
-                    cele_y = (int)Math.round(y);
-                    raster.putPixel(x, cele_y);
-                    y += k;
-                }
-            }
-        } else {
-
-                if (y2 < y1) {
-                    int tmp = x2;
-                    x2 = x1;
-                    x1 = tmp;
-
-                    tmp = y2;
-                    y2 = y1;
-                    y1 = tmp;
-                }
-
-                double k = (double)dx/dy;
-                int cele_x;
-                double x = (double)x1;
-                for (int y = y1; y <= y2; y++) {
-                    cele_x = (int)Math.round(x);
-                    raster.putPixel(cele_x, y);
-                    x += k;
-                }
         }
     }
 
