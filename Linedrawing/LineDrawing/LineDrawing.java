@@ -214,13 +214,17 @@ public class LineDrawing implements RasterListener {
     private void drawDDALine(int x1, int y1, int x2, int y2) {
         // the slope
         double m = (y2 - y1) / (double) (x2 - x1);
-        if (Math.abs(m) <= 1) {
+        
+        int xInc = (y1 > y2) ? 1 : -1;
+        
+        if (xInc == 1){
+            if (Math.abs(m) <= 1) {
             double y = y1;
             for (int x = x1; x <= x2; x++) {
                 raster.putPixel(x, (int) Math.round(y));
                 y += m;
-            }
-        } else {
+                 }
+         } else {
             m = 1 / m;
             double x = x1;
             for (int y = y1; y <= y2; y++) {
@@ -228,9 +232,29 @@ public class LineDrawing implements RasterListener {
                 x += m;
             }
         }
+        }
+        else {
+           
+            if (Math.abs(m) <= 1) {
+            double y = y1;
+            
+            for (int x = x2; x <= x1; x++) {
+                raster.putPixel(x, (int) Math.round(y));
+                y += m;
+                 }
+         } else {
+            m = 1 / m;
+            double x = x1;
+            for (int y = y2; y <= y1; y++) {
+                raster.putPixel((int) Math.round(x), y);
+                x += m;
+            
+        }
+            }
+    }
     }
 
-    private void drawBresenhamLine(int startCol, int startRow, int endCol, int endRow) {
+    private void drawBresenhamLine(int x1, int y1, int x2, int y2) {
     }
 
     // RasterListener methods
