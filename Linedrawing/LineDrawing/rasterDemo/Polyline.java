@@ -9,32 +9,27 @@ import java.util.Iterator;
  * 
  * @author phingsto
  */
-public class Polyline
-{
-	private ArrayList<Line> lines; // an arbitrary list of lines
+public class Polyline {
 
-	public Polyline()
-	{
-		lines = new ArrayList<Line>();
-	}
-	
-	public Polyline(Polyline polyline) 
-	{
-		this();
-		
-		for(Line line: polyline.lines)
-		{
-			add(new Line(line));
-		}
-	}
-	
-	public void add(Line line) 
-	{
-		lines.add(new Line(line));
-	}
-	
-	public ArrayList<Line> getLines()
-	{
-		return lines;
-	}
+    private ArrayList<Line> lines; // an arbitrary list of lines
+
+    public Polyline() {
+        lines = new ArrayList<Line>();
+    }
+
+    public Polyline(Polyline polyline) {
+        this();
+
+        for (Line line : polyline.lines) {
+            add(new Line(line));
+        }
+    }
+
+    public void add(Line line) {
+        lines.add(new Line(line));
+    }
+
+    public ArrayList<Line> getLines() {
+        return lines;
+    }
 }
