@@ -212,21 +212,37 @@ public class LineDrawing implements RasterListener {
      * 
      */
     private void drawDDALine(int x1, int y1, int x2, int y2) {
-        // the slope
-        double m = (y2 - y1) / (double) (x2 - x1);
-        if (Math.abs(m) <= 1) {
-            double y = y1;
-            for (int x = x1; x <= x2; x++) {
-                raster.putPixel(x, (int) Math.round(y));
-                y += m;
+        if (Math.abs(y2 - y1) <= Math.abs(x2 - x1)) {
+            if (x2 < x1) {
+                drawDDALineXVersion(x2, y2, x1, y1);
+            } else {
+                drawDDALineXVersion(x1, y1, x2, y2);
             }
+
         } else {
-            m = 1 / m;
-            double x = x1;
-            for (int y = y1; y <= y2; y++) {
-                raster.putPixel((int) Math.round(x), y);
-                x += m;
+            if (y2 < y1) {
+                drawDDALineYVersion(x2, y2, x1, y1);
+            } else {
+                drawDDALineYVersion(x1, y1, x2, y2);
             }
+        }
+    }
+
+    private void drawDDALineXVersion(int x1, int y1, int x2, int y2) {
+        double m = (y2 - y1) / (double) (x2 - x1);
+        double y = y1;
+        for (int x = x1; x <= x2; x++) {
+            raster.putPixel(x, (int) Math.round(y));
+            y += m;
+        }
+    }
+
+    private void drawDDALineYVersion(int x1, int y1, int x2, int y2) {
+        double m = (double)(x2-x1)/(y2-y1);
+        double x = x1;
+        for (int y = y1; y <= y2; y++) {
+            raster.putPixel((int) Math.round(x), y);
+            x += m;
         }
     }
 
