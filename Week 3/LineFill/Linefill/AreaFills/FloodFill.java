@@ -105,17 +105,16 @@ public class FloodFill implements RasterListener {
             } catch (InterruptedException e) {
             }
 
-            
-           //left
+            //left
             if (col > 0) {
                 flood4(col - 1, row, startColour);
             }
-            
+
             //right
             if (col < COLS - 1) {
                 flood4(col + 1, row, startColour);
             }
-            
+
             //down
             if (row > 0) {
                 flood4(col, row - 1, startColour);
@@ -128,10 +127,9 @@ public class FloodFill implements RasterListener {
     }
 
     private void flood8(int col, int row, Color startColour) {
-       // System.out.println("8- connected flood not yet implemented");
+        // System.out.println("8- connected flood not yet implemented");
         // your task to add code here
-        
-        
+
         if (startColour.equals(getPixel(col, row))) {
             setPixel(col, row);
 
@@ -149,88 +147,83 @@ public class FloodFill implements RasterListener {
             // now we call the routine recursively for each neighbour
             // the "guard" surrounding each call ensures that we do
             // no try to keep going past the edge of the raster
-           //left
+            //left
             if (col > 0) {
                 flood8(col - 1, row, startColour);
             }
             //down-left
-             if (col > 0 && row > 0 ) {
-                flood8(col - 1, row -1, startColour); 
-             }
-             //down
-             if (row > 0) {
+            if (col > 0 && row > 0) {
+                flood8(col - 1, row - 1, startColour);
+            }
+            //down
+            if (row > 0) {
                 flood8(col, row - 1, startColour);
             }
-             //down-right
-             if (col < COLS - 1 && row > 0 ) {
-                flood8(col + 1, row -1, startColour); 
-             }
-             //right
-              if (row < ROWS - 1) {
+            //down-right
+            if (col < COLS - 1 && row > 0) {
+                flood8(col + 1, row - 1, startColour);
+            }
+            //right
+            if (row < ROWS - 1) {
                 flood8(col, row + 1, startColour);
             }
-               //up-right
-             if (col < COLS -1  && row < ROWS - 1 ) {
-                flood8(col + 1, row +1, startColour); 
-             }
-               //up
+            //up-right
+            if (col < COLS - 1 && row < ROWS - 1) {
+                flood8(col + 1, row + 1, startColour);
+            }
+            //up
             if (col < COLS - 1) {
                 flood8(col + 1, row, startColour);
             }
-              //up-left
-             if (col > 0 && row < ROWS -1  ) {
-                flood8(col - 1, row + 1, startColour); 
-             }
-            
-                 
-          
-            
-           
-           
+            //up-left
+            if (col > 0 && row < ROWS - 1) {
+                flood8(col - 1, row + 1, startColour);
+            }
+
         }
     }
 
-    private void boundary(int col, int row, Color startColour, Color boundaryColour) {
+    private void boundary(int x, int y, Color fillColor, Color borderColor) {
         System.out.println("boundary fill not yet implemented");
-        
-         //if (boundaryColour.equals(getPixel(col, row))) {
-            if (boundaryColour! = startColour && boundaryColour!= boundary){
-            setPixel(col, row);
-            
+
+        Color currentPixelColour = getPixel(x, y);
+        if (!(currentPixelColour.equals(fillColor) || currentPixelColour.equals(borderColor))) {
+            setPixel(x, y, fillColor);
+
             // this bit makes the animation work by
             // drawing intermediate results, and slowing the updates down
             synchronized (this) {
-               draw();
+                draw();
             }
 
-           try {
-               Thread.sleep(10);
+            try {
+                Thread.sleep(10);
             } catch (InterruptedException e) {
             }
 
             //now we call the routine recursively for each neighbour
             // the "guard" surrounding each call ensures that we do
             // no try to keep going past the edge of the raster
-          // left
-            if (col > 0) {
-                boundary(col - 1, row, startColour);
+            // left
+            if (x > 0) {
+                boundary(x - 1, y, fillColor, borderColor);
             }
-            
+
             //right
-            if (col < COLS - 1) {
-                boundary(col + 1, row, startColour);
+            if (x < COLS - 1) {
+                boundary(x + 1, y, fillColor, borderColor);
             }
-            
+
             //down
-            if (row > 0) {
-                boundary(col, row - 1, startColour);
+            if (y > 0) {
+                boundary(x, y - 1, fillColor, borderColor);
             }
             //up
-           if (row < ROWS - 1) {
-                boundary(col, row + 1, startColour);
+            if (y < ROWS - 1) {
+                boundary(x, y + 1, fillColor, borderColor);
             }
         }
-      
+
     }
 
     // a couple of helper methods to change and read pixel colours
@@ -242,6 +235,17 @@ public class FloodFill implements RasterListener {
             pixel.setColour(colour);
         } else {
             pixels.add(new Pixel(col, row, colour));
+        }
+    }
+
+    synchronized private void setPixel(int col, int row, Color color) {
+        int index = pixelIndex(col, row);
+
+        if (index >= 0) {
+            Pixel pixel = pixels.get(index);
+            pixel.setColour(color);
+        } else {
+            pixels.add(new Pixel(col, row, color));
         }
     }
 
@@ -322,7 +326,7 @@ public class FloodFill implements RasterListener {
         } else if (mode == RasterUserMode.BOUNDARY) {
             Line line = event.getLine();
 
-            Boundary runner = new Boundary(line.endCol, line.endRow);
+            Boundary runner = new Boundary(line.endCol, line.endRow, boundaryColour, colour);
 
             (new Thread(runner)).start();
         }
@@ -381,7 +385,6 @@ public class FloodFill implements RasterListener {
             innerPanel.setSize(new Dimension(width, height));
 
             // create panel for mode buttons
-
             JPanel modePanel = new JPanel();
             modePanel.setLayout(new GridLayout(2, 2));
             modePanel.setBorder(new TitledBorder("mode"));
@@ -413,7 +416,6 @@ public class FloodFill implements RasterListener {
             innerPanel.add(modePanel);
 
             // And a panel for setting colours
-
             JPanel colourPanel = new JPanel();
             colourPanel.setLayout(new GridLayout(2, 1));
             colourPanel.setBorder(new TitledBorder("colours"));
@@ -429,7 +431,6 @@ public class FloodFill implements RasterListener {
             innerPanel.add(colourPanel);
 
             // and a button to clear the raster
-
             clearButton = new JButton("clear");
             clearButton.addActionListener(this);
             innerPanel.add(clearButton);
@@ -486,6 +487,7 @@ public class FloodFill implements RasterListener {
     // An inner class that is used to enable the 8-connected flood fill to execute in a separate thread,
     // allowing animation to occur
     public class Flood8 implements Runnable {
+
         private int startCol;
         private int startRow;
         public Color startColour;
@@ -505,16 +507,17 @@ public class FloodFill implements RasterListener {
     // An inner class that is used to enable the boundary fill to execute in a separate thread,
     // allowing animation to occur
     public class Boundary implements Runnable {
+
         private int startCol;
         private int startRow;
         public Color startColour;
         public Color boundaryColour;
 
-        public Boundary(int startCol, int startRow) {
+        public Boundary(int startCol, int startRow, Color fillColor, Color borderColor) {
             this.startCol = startCol;
             this.startRow = startRow;
-            this.startColour = startColour;
-            this.boundaryColour =  boundaryColour;
+            this.startColour = fillColor;
+            this.boundaryColour = borderColor;
         }
 
         public void run() {
