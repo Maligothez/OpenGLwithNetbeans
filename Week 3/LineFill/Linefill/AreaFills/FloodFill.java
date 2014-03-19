@@ -193,42 +193,43 @@ public class FloodFill implements RasterListener {
     private void boundary(int col, int row, Color startColour, Color boundaryColour) {
         System.out.println("boundary fill not yet implemented");
         
-        // if (startColour.equals(getPixel(col, row))) {
-          //  setPixel(col, row);
-
+         //if (boundaryColour.equals(getPixel(col, row))) {
+            if (boundaryColour! = startColour && boundaryColour!= boundary){
+            setPixel(col, row);
+            
             // this bit makes the animation work by
             // drawing intermediate results, and slowing the updates down
-            //synchronized (this) {
-              //  draw();
-            //}
+            synchronized (this) {
+               draw();
+            }
 
-            //try {
-             //   Thread.sleep(10);
-            //} catch (InterruptedException e) {
-            //}
+           try {
+               Thread.sleep(10);
+            } catch (InterruptedException e) {
+            }
 
-            // now we call the routine recursively for each neighbour
+            //now we call the routine recursively for each neighbour
             // the "guard" surrounding each call ensures that we do
             // no try to keep going past the edge of the raster
-           //left
-            //if (col > 0) {
-              //  flood4(col - 1, row, startColour);
-            //}
+          // left
+            if (col > 0) {
+                boundary(col - 1, row, startColour);
+            }
             
             //right
-            //if (col < COLS - 1) {
-              //  flood4(col + 1, row, startColour);
-            //}
+            if (col < COLS - 1) {
+                boundary(col + 1, row, startColour);
+            }
             
             //down
-            //if (row > 0) {
-              //  flood4(col, row - 1, startColour);
-            //}
+            if (row > 0) {
+                boundary(col, row - 1, startColour);
+            }
             //up
-           // if (row < ROWS - 1) {
-              //  flood4(col, row + 1, startColour);
-          //  }
-     //   }
+           if (row < ROWS - 1) {
+                boundary(col, row + 1, startColour);
+            }
+        }
       
     }
 
