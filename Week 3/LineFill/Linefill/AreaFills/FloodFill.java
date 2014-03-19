@@ -167,7 +167,7 @@ public class FloodFill implements RasterListener {
              }
              //right
               if (row < ROWS - 1) {
-                flood4(col, row + 1, startColour);
+                flood8(col, row + 1, startColour);
             }
                //up-right
              if (col < COLS -1  && row < ROWS - 1 ) {
@@ -175,7 +175,7 @@ public class FloodFill implements RasterListener {
              }
                //up
             if (col < COLS - 1) {
-                flood4(col + 1, row, startColour);
+                flood8(col + 1, row, startColour);
             }
               //up-left
              if (col > 0 && row < ROWS -1  ) {
@@ -190,45 +190,45 @@ public class FloodFill implements RasterListener {
         }
     }
 
-    private void boundary(int col, int row, Color startColour) {
+    private void boundary(int col, int row, Color startColour, Color boundaryColour) {
         System.out.println("boundary fill not yet implemented");
         
-         if (startColour.equals(getPixel(col, row))) {
-            setPixel(col, row);
+        // if (startColour.equals(getPixel(col, row))) {
+          //  setPixel(col, row);
 
             // this bit makes the animation work by
             // drawing intermediate results, and slowing the updates down
-            synchronized (this) {
-                draw();
-            }
+            //synchronized (this) {
+              //  draw();
+            //}
 
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-            }
+            //try {
+             //   Thread.sleep(10);
+            //} catch (InterruptedException e) {
+            //}
 
             // now we call the routine recursively for each neighbour
             // the "guard" surrounding each call ensures that we do
             // no try to keep going past the edge of the raster
            //left
-            if (col > 0) {
-                flood4(col - 1, row, startColour);
-            }
+            //if (col > 0) {
+              //  flood4(col - 1, row, startColour);
+            //}
             
             //right
-            if (col < COLS - 1) {
-                flood4(col + 1, row, startColour);
-            }
+            //if (col < COLS - 1) {
+              //  flood4(col + 1, row, startColour);
+            //}
             
             //down
-            if (row > 0) {
-                flood4(col, row - 1, startColour);
-            }
+            //if (row > 0) {
+              //  flood4(col, row - 1, startColour);
+            //}
             //up
-            if (row < ROWS - 1) {
-                flood4(col, row + 1, startColour);
-            }
-        }
+           // if (row < ROWS - 1) {
+              //  flood4(col, row + 1, startColour);
+          //  }
+     //   }
       
     }
 
@@ -506,14 +506,18 @@ public class FloodFill implements RasterListener {
     public class Boundary implements Runnable {
         private int startCol;
         private int startRow;
+        public Color startColour;
+        public Color boundaryColour;
 
         public Boundary(int startCol, int startRow) {
             this.startCol = startCol;
             this.startRow = startRow;
+            this.startColour = startColour;
+            this.boundaryColour =  boundaryColour;
         }
 
         public void run() {
-            boundary(startCol, startRow);
+            boundary(startCol, startRow, startColour, boundaryColour);
             // should have some synchronisation, but we'll risk it!!
         }
     }
