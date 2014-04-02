@@ -73,7 +73,7 @@ public class Creature
     
     public void draw(GL gl)
     {
-        SHOW_AXES = true;
+        SHOW_AXES = false;
         if(SHOW_AXES)
         {
             axes.draw(gl, 100, 0, 0, 1);
@@ -98,24 +98,42 @@ public class Creature
         {
             axes.draw(gl, 0.5, 1, 1, 1);
         }
-        
+        if(dir == Direction.LEFT)
+            {
+                gl.glScaled(-1, 1, 1);
+            }
         gl.glPushMatrix();
-        {        
-            gl.glTranslated(0, 1, 0);
+        {    
+            gl.glScaled(1.0, 1.0-squat, 1);
+            gl.glTranslated(0, 1+elevation, 0);
 
-            drawLegs(gl);
+           // this transformation makes the
+        // legs spin around when the creature walks
             
-            drawEye(gl);
+            gl.glPushMatrix();
+        // this transformation makes the
+        // legs spin around when the creature walks
+            gl.glRotated(legAngle, 0, 0, 1);
+            drawLegs(gl);
+            gl.glPopMatrix();
+           
 
             gl.glPushMatrix();
             {
                 // this one controls the relative size of the creature's body
                 gl.glScaled(BODY_SIZE, BODY_SIZE, 1);
                 drawBody(gl);
+                
             }
+            
+            
             gl.glPopMatrix();
         }
+        
+        
         gl.glPopMatrix();
+        
+        
     }
     
     // draw legs using leg coordinates
@@ -132,7 +150,15 @@ public class Creature
             // legs will be red
             gl.glColor3d(1, 0, 0);
 
-            drawLeg(gl);
+            gl.glPushMatrix();
+            for(int i = 0; i < NLEGS; i++)
+                {
+                    drawLeg(gl);
+                    // rotate the next leg a bit further
+                    // so the legs will point in all directions
+                    gl.glRotated(360.0/NLEGS, 0, 0, 1);
+                }
+            gl.glPopMatrix();
         }
         gl.glPopAttrib();
     }
@@ -146,9 +172,9 @@ public class Creature
         gl.glPushAttrib(GL.GL_ALL_ATTRIB_BITS);
         {
             // body is dark red
-            gl.glColor3d(1, 0, 0);
+            gl.glColor3d(0, 0, 0);
 
-            glu.gluDisk(circle, -1, -1, 1, 1);
+            glu.gluDisk(circle, 1, 2, 20, 1);
         }
         gl.glPopAttrib();
         
@@ -204,6 +230,15 @@ public class Creature
             glu.gluDisk(circle, 0, 1, 20, 1);
         }
         gl.glPopAttrib();
+        
+        gl.glPushMatrix();
+        // the eye is a little off centre
+        gl.glTranslated(EYE_X, EYE_Y, 0);
+        // this determines the size of the eye
+        // relative to the body
+        gl.glScaled(EYE_SIZE, EYE_SIZE, 1);
+        drawEye(gl);
+        gl.glPopMatrix();
     }
     
     // the rest controls the movements of the creature
