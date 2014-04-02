@@ -184,7 +184,7 @@ public class FloodFill implements RasterListener {
     }
 
     private void boundary(int x, int y, Color fillColor, Color borderColor) {
-        System.out.println("boundary fill not yet implemented");
+        
 
         Color currentPixelColour = getPixel(x, y);
         if (!(currentPixelColour.equals(fillColor) || currentPixelColour.equals(borderColor))) {
