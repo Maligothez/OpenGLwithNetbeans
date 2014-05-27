@@ -42,38 +42,106 @@ public class DefaultDrawer implements Drawer, Constants
     
     public void drawLocust(GL gl, Point2D.Double location, double size, double rotation, int frame)
     {
-        gl.glPushMatrix();
-        {   
-            gl.glTranslated(location.x, location.y, 0);
-                     
-            gl.glRotated(rotation, 0, 0, 1);
-             gl.glScaled(size   , size , 0);
-           
-             gl.glPushMatrix();
-             {
-             gl.glTranslated(location.x + 20 , location.y, 0);
-             gl.glColor3d(1.0, 1.0, 0.0);    
-             glu.gluDisk(circle, 0, 1.0, 20, 1);
-             
-             }
-             gl.glPopMatrix();
-             
-            gl.glColor3d(1.0, 1.0, 0.0);    
-            glu.gluDisk(circle, 0, 1.0, 20, 1);
+        
+      gl.glPushMatrix();
+     
+       
+      
+      gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x + 15, location.y -10 , 0); 
+            gl.glRotated(215, 0, 0, 1);
+            gl.glScaled(size /4, size, 0); 
             
-            gl.glColor3d(0.0, 0.0, 0.0);
-           // gl.glBegin(GL.GL_TRIANGLE_FAN);
-            //{
-              //  gl.glVertex2d(0, 0);
-               // gl.glVertex2d(Math.cos(5*Math.PI/4), Math.sin(5*Math.PI/4));
-               // gl.glVertex2d(Math.cos(Math.PI/2), Math.sin(Math.PI/2));
-                //gl.glVertex2d(Math.cos(7*Math.PI/4), Math.sin(7*Math.PI/4));
-                //gl.glVertex2d(Math.cos(Math.PI/2), Math.sin(Math.PI/2));
-            //}
-            gl.glEnd();
-        }
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+        } 
+        gl.glPopMatrix(); 
+        gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x + 15, location.y  , 0); 
+            gl.glRotated(270, 0, 0, 1);
+            gl.glScaled(size /4, size, 0);
+             
+            
+            
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+        } 
+        gl.glPopMatrix(); 
+        gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x + 15, location.y +10, 0); 
+            gl.glRotated(315, 0, 0, 1); 
+            gl.glScaled(size /4, size, 0); 
+ 
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+ 
+//          
+        } 
+        gl.glPopMatrix();
+        gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x, location.y, 0); 
+            gl.glRotated(0, 0, 0, 1); 
+            gl.glScaled(size /1.5, size  *1.5, 0); 
+ 
+            gl.glColor3d (1.0, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+ 
+//          
+        } 
+        gl.glPopMatrix();
+        gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x - 15, location.y -10, 0); 
+            gl.glRotated(135, 0, 0, 1); 
+            gl.glScaled(size  /4, size, 0); 
+ 
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+ 
+//          
+        } 
+        gl.glPopMatrix();
+        gl.glPushMatrix(); 
+        { 
+            gl.glTranslated(location.x - 15, location.y, 0); 
+            gl.glRotated(90, 0, 0, 1); 
+            gl.glScaled(size /4, size, 0); 
+ 
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+ 
+//          
+        } 
+        gl.glPopMatrix();
+        gl.glPushMatrix(); 
+        { 
+           gl.glTranslated(location.x - 15, location.y + 10, 0); 
+            gl.glRotated(45, 0, 0, 1); 
+            gl.glScaled(size /4, size, 0); 
+ 
+            gl.glColor3d(0.5, 1.0, 1.0); 
+            glu.gluDisk(circle, 0, 1.0, 20, 1); 
+ 
+//          
+        } 
+        gl.glPopMatrix();
+       
         gl.glPopMatrix();
         
+        //  gl.glColor3d(0.0, 0.0, 0.0); 
+            // gl.glBegin(GL.GL_TRIANGLE_FAN); 
+            //{ 
+            //  gl.glVertex2d(0, 0); 
+            // gl.glVertex2d(Math.cos(5*Math.PI/4), Math.sin(5*Math.PI/4)); 
+            // gl.glVertex2d(Math.cos(Math.PI/2), Math.sin(Math.PI/2)); 
+            //gl.glVertex2d(Math.cos(7*Math.PI/4), Math.sin(7*Math.PI/4)); 
+            //gl.glVertex2d(Math.cos(Math.PI/2), Math.sin(Math.PI/2)); 
+            //} 
+//            gl.glEnd(); 
         
     }
 
