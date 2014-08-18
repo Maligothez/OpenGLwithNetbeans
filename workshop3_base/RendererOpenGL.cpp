@@ -176,38 +176,37 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 	//turret
 	glPushMatrix();
 	
+	//arm1
+	glPushMatrix();
+
+		glPushMatrix();
 	
 		
 	    glRotatef(45,0,1, 0);
 	    glTranslatef(-1.0,4.0 ,6.0f);
-	glPushMatrix();
+	
+	
+		glRotatef(turretAngle, 0 ,1,0);
+		glScalef(3.5,2,2);
+		drawCube();
+		
+	glPopMatrix();a
+
 		glRotatef(-20,1,0, 0);
 		glRotatef(45,0,1, 0);
-		//glTranslatef(0,-1 ,0);
-		//glRotatef(upperArmAngle, 0,0,1);
+		glTranslatef(0,-1 ,0);
+
+		glRotatef(upperArmAngle, 0,0,1);
+
 		glTranslatef(-3.5,3.8 ,6.0f);
 		glScalef(5.3,0.5,0.5);
 		
 		drawCube();
 
+
 	glPopMatrix();
-	
-		glRotatef(turretAngle, 0 ,1,0);
-		glScalef(3.5,2,2);
-		drawCube();
-		glRotatef(upperArmAngle, 0,0,1);
 	glPopMatrix();
-	//arm1
-	glPushMatrix();
-		glRotatef(-20,1,0, 0);
-		glRotatef(45,0,1, 0);
-		glTranslatef(0,-1 ,0);
-		glRotatef(upperArmAngle, 0,0,1);
-		glTranslatef(-3.5,3.8 ,6.0f);
-		glScalef(5.3,0.5,0.5);
-		
-		drawCube();
-	glPopMatrix();
+
 	//arm2
 	//glPushMatrix;
 		//drawCube();
