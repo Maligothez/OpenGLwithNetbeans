@@ -47,66 +47,66 @@ void drawCube ()
 
 
 	glBegin(GL_QUADS);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,-0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,-0.5,-0.5);
 	//glEnd();
 	//back
 	//glBegin(GL_QUADS);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,-0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,-0.5,0.5);
 	//glEnd();
-	
+
 	//left
 	//glBegin(GL_QUADS);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,0.5,0.5);
-		glColor3f(1.0,0.0,-1.0);
-		glVertex3f(-0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,0.5,0.5);
+	glColor3f(1.0,0.0,-1.0);
+	glVertex3f(-0.5,0.5,0.5);
 	//glEnd();
-   //right
+	//right
 	//glBegin(GL_QUADS);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,-0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,-0.5);
-		//bottom
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,-0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,-0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,-0.5,-0.5);
-		//top
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,0.5,-0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(-0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,0.5);
-		glColor3f(1.0,0.0,0.0);
-		glVertex3f(0.5,0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,-0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,-0.5);
+	//bottom
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,-0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,-0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,-0.5,-0.5);
+	//top
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,0.5,-0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(-0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,0.5);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3f(0.5,0.5,-0.5);
 	glEnd();
 
 }
@@ -120,60 +120,70 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 	float turretAngle = bigExcavator.getTurretAngle();
 	float upperArmAngle = bigExcavator.getUpperArmAngle();
 	float lowerArmAngle = bigExcavator.getLowerArmAngle();
-	
-	
+
+
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT); // clear buffers from last frame
 	glLoadIdentity(); // clear coordinate transformation - (0,0,0) is the screen centre
 
 	static float angle = 0;
-   
+
 	// set up camera coordinates and point the camera at (0,0,0)
 	float cameraDistance = 20;
 	static float cameraHeight = 3;
 	float cameraAngle = (90-(180/3.1415927)*atan(cameraDistance/cameraHeight));
 	// perform the viewing transformation
-	
-	glRotatef(cameraAngle,1,0,0);
-		
-	glTranslatef(0,-cameraHeight,-cameraDistance);
-	
+
+	glRotatef(cameraAngle, 1, 0, 0);
+
+	glTranslatef(0, -cameraHeight, -cameraDistance);
+
 
 	// draw the ground
 	glColor3f(0,1,0);
 	float planeSize = 100;
 	glBegin(GL_QUADS);
-	  glVertex3f(planeSize,0,planeSize);
-	  glVertex3f(planeSize,0,-planeSize);
-	  glVertex3f(-planeSize,0,-planeSize);
-	  glVertex3f(-planeSize,0,planeSize);
+	glVertex3f(planeSize, 0, planeSize);
+	glVertex3f(planeSize, 0, -planeSize);
+	glVertex3f(-planeSize, 0, -planeSize);
+	glVertex3f(-planeSize, 0, planeSize);
 	glEnd();
-    
+
 
 	// Insert excavator drawing code
 	//base
 	glPushMatrix();
-		glRotatef(45,0,1, 0),
-	    glTranslatef(0.0,2.3,6.0f);
-		
-		glScalef(6.6,2,2.8);
+	{
+		glRotatef(45, 0, 1, 0),
+			glTranslatef(0.0, 2.3, 6.0f);
+
+		glScalef(6.6, 2, 2.8);
 		drawCube();
+	}
 	glPopMatrix();
+
 	//tracks
 	glPushMatrix();
-		
-		glRotatef(45,0,1, 0),
-		glTranslatef(2.0 ,0.5,3.5f);
-		glScalef(8.8,1.2,1);
+	{
+		glRotatef(45, 0, 1, 0),
+			glTranslatef(2.0, 0.5, 3.5f);
+		glScalef(8.8, 1.2, 1);
 		drawCube();
+	}
 	glPopMatrix();
+
 	glPushMatrix();
-		glRotatef(45,0,1, 0);
-	    glTranslatef(2.0 ,0.5,6.5f);
-		
-		glScalef(8.8,1.2,1);
+	{
+		glRotatef(45, 0, 1, 0);
+		glTranslatef(2.0, 0.5, 6.5f);
+
+		glScalef(8.8, 1.2, 1);
 		drawCube();
+	}
 	glPopMatrix();
+
+
 	//turret
+<<<<<<< HEAD
 	glPushMatrix();
 	
 	//arm1
@@ -206,21 +216,84 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 
 	glPopMatrix();
 	glPopMatrix();
+=======
+	drawTurret(bigExcavator);
+>>>>>>> origin/master
 
 	//arm2
 	//glPushMatrix;
-		//drawCube();
+	//drawCube();
 	//glPopMatrix();
 	//Spade
 	//glPushMatrix;
-		//drawCube();
+	//drawCube();
 	//glPopMatrix();
-
-	
 
 	SwapBuffers(hDC);
 }
 
+
+void RendererOpenGL::drawTurret(Excavator bigExcavator)
+{
+	float turretAngle = bigExcavator.getTurretAngle();
+	glPushMatrix();
+	{
+		// These two commands place the turret above the base
+		glRotatef(45, 0, 1, 0);
+		glTranslatef(-1.0, 4.0, 6.0f);
+
+		// Doesn't seem to affect anything I see?
+		//glPushMatrix();
+		//{
+		//	glRotatef(-20,1,0, 0);
+		//	glRotatef(45,0,1, 0);
+		//	//glTranslatef(0,-1 ,0);
+		//	//glRotatef(upperArmAngle, 0,0,1);
+		//	glTranslatef(-3.5,3.8 ,6.0f);
+		//	glScalef(5.3,0.5,0.5);
+		//	drawCube();
+		//}
+		//glPopMatrix();
+
+		// rotates the turret
+		glRotatef(turretAngle, 0, 1, 0);
+
+		// scales the turret up to the right size
+		glScalef(3.5, 2, 2);
+
+		// draws the turret
+		drawCube();
+
+		//doesn't seem to do anything
+		//glRotatef(upperArmAngle, 0,0,1);
+	}
+	glPopMatrix();
+
+	//arm1
+	drawTurretArm(bigExcavator);
+}
+
+void RendererOpenGL::drawTurretArm(Excavator bigExcavator)
+{
+	float upperArmAngle = bigExcavator.getUpperArmAngle();
+	//arm1
+	glPushMatrix();
+	{
+		// responsible for placing the arm in the correct place
+		glRotatef(-20, 1, 0, 0);
+		glRotatef(45,0, 1, 0);
+		glTranslatef(0, -1, 0);
+
+		// rotates the arm back and forth
+		glRotatef(upperArmAngle, 0, 0, 1);
+
+		// places the arm on top of the turret, scales it, draws it
+		glTranslatef(-3.5, 3.8, 6.0f);
+		glScalef(5.3, 0.5, 0.5);
+		drawCube();
+	}
+	glPopMatrix();
+}
 
 void RendererOpenGL::setUpViewingFrustum()  // set up the viewing volume
 {
@@ -251,11 +324,11 @@ bool RendererOpenGL::bindToWindow(HWND &windowHandle)
 	// Third - create a rendering context for OpenGL (something OpenGL draws to and maps to the device)
 	// Fourth - make the rendering context 'current'
 	// Fifth - Set the size of the OpenGL window.
-	
+
 	// First - get the device context of the game window
 	hWnd = windowHandle;
 	hDC = GetDC(hWnd); // get the device context of the window
-	
+
 
 	// Second - set the device to some desired pixel format
 	// This is done be filling out a pixel format descriptor structure
@@ -293,35 +366,35 @@ bool RendererOpenGL::bindToWindow(HWND &windowHandle)
 		return (false);
 	}
 
-	
+
 
 	// Third - create rendering context
- 
-	 hRC = wglCreateContext(hDC); // windows dependent OpenGL function (wgl)
-	 if (hRC==NULL)
-	 {
-		 MessageBox (NULL,"Could not create GL rendering context","Error",MB_OK);
-		 return (false);
-	 }
 
-	 // Fourth - Make the rendering context current	 
-	 if (!wglMakeCurrent(hDC, hRC))
-	 {
-		 MessageBox (NULL,"Could not make rendering context current","Error",MB_OK);
-		 return (false);
-	 }
+	hRC = wglCreateContext(hDC); // windows dependent OpenGL function (wgl)
+	if (hRC==NULL)
+	{
+		MessageBox (NULL,"Could not create GL rendering context","Error",MB_OK);
+		return (false);
+	}
 
-	 // Fifth - set the size of the OpenGL window
+	// Fourth - Make the rendering context current	 
+	if (!wglMakeCurrent(hDC, hRC))
+	{
+		MessageBox (NULL,"Could not make rendering context current","Error",MB_OK);
+		return (false);
+	}
 
-	 /*
-	 ***** Note: this step is important, not setting an initial size
-	 can cause the whole OS to crash (computer is re-set)
-	 */
+	// Fifth - set the size of the OpenGL window
 
-	 RECT rect; // structure to store the coordinates of the 4 corners of the window
-	 GetClientRect (hWnd, &rect); // put the window coordinates in the structure
-	 ResizeCanvas(long(rect.right-rect.left), long(rect.bottom-rect.top));
-	 
+	/*
+	***** Note: this step is important, not setting an initial size
+	can cause the whole OS to crash (computer is re-set)
+	*/
+
+	RECT rect; // structure to store the coordinates of the 4 corners of the window
+	GetClientRect (hWnd, &rect); // put the window coordinates in the structure
+	ResizeCanvas(long(rect.right-rect.left), long(rect.bottom-rect.top));
+
 	return (true);
 }
 
@@ -363,8 +436,8 @@ void RendererOpenGL::initialise()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// give OpenGL a hint on which perspective calculation to use (here suggesting the nicest)
 	SwapBuffers(hDC);	// draw the screen (will draw a black blank screen as no drawing has been done yet)
 	glLineWidth(4);
-  
-	
+
+
 	// examples of other operations that could be good here in the future:
 	//glEnable(GL_TEXTURE_2D);	// enable 2D texture mapping
 	//glFrontFace(GL_CW); // indicate which side of a polygon is the front (defined in terms of the order vertices are given)
@@ -400,18 +473,18 @@ bool RendererOpenGL::releaseFromWindow()
 	//	MessageBox (NULL,"Could not release device context","Error",MB_OK);
 	//	return (false);
 	//}
-	
+
 	hRC	= NULL;
-    hDC	= NULL;	
+	hDC	= NULL;	
 
 	// delete the renderer and set it to NULL (this is how the singleton gets deleted)
 
-	
+
 	delete renderer;
 	renderer = NULL;
 
-	
-	
+
+
 	return (true);
 
 }
@@ -421,7 +494,7 @@ void RendererOpenGL::ResizeCanvas(long widthRequest, long heightRequest)
 {
 	rendererWidth = (GLsizei)widthRequest;
 	rendererHeight = (GLsizei)heightRequest;
-    glViewport(0, 0, rendererWidth, rendererHeight);
+	glViewport(0, 0, rendererWidth, rendererHeight);
 	setUpViewingFrustum();	
 }
 
