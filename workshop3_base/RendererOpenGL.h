@@ -75,4 +75,6 @@ private:   // class member variables and methods following 'private' are private
 	GLdouble nearClippingPlane;
 	GLdouble farClippingPlane;	
 
+	void drawTurret(Excavator bigExcavator);
+	void drawTurretArm(Excavator bigExcavator);
 };
