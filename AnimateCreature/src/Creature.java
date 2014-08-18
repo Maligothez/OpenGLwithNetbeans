@@ -204,7 +204,7 @@ public class Creature
         {
             gl.glBegin(GL.GL_LINES);
             {
-                gl.glVertex2d(0, 0);
+                gl.glVertex2i(0, 0);
                 gl.glVertex2d(0.1, -0.6);
                 gl.glVertex2d(0.1, -0.6);
                 gl.glVertex2d(-0.1, -0.9);

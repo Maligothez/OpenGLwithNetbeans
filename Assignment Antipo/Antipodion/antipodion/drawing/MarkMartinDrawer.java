@@ -1,12 +1,7 @@
 /*
- * DefaultDrawer.java
- *
- * Created on 17 August 2007, 09:59
- *
- * To change this template, choose Tools | Template Manager
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package antipodion.drawing;
 
 import javax.media.opengl.*;
@@ -22,7 +17,7 @@ import static antipodion.Constants.ANIM_FRAMES;
  *
  * @author phingsto
  */
-public class DefaultDrawer implements Drawer, Constants
+public class MarkMartinDrawer implements Drawer, Constants
 {
     // useful things for drawing filled circles
     private GLU glu = new GLU();
@@ -30,7 +25,7 @@ public class DefaultDrawer implements Drawer, Constants
     private GLUT glut = new GLUT();
     
     /** Creates a new instance of DefaultDrawer */
-    public DefaultDrawer()
+    public MarkMartinDrawer()
     {
     }
     
