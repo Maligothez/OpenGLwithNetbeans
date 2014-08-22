@@ -183,7 +183,7 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 
 
 	//turret
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	glPushMatrix();
 	
 	//arm1
@@ -200,7 +200,7 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 		glScalef(3.5,2,2);
 		drawCube();
 		
-	glPopMatrix();a
+	glPopMatrix();
 
 		glRotatef(-20,1,0, 0);
 		glRotatef(45,0,1, 0);
@@ -216,9 +216,9 @@ void RendererOpenGL::Render(Excavator bigExcavator) // this does the drawing
 
 	glPopMatrix();
 	glPopMatrix();
-=======
+//=======
 	drawTurret(bigExcavator);
->>>>>>> origin/master
+//>>>>> origin/master
 
 	//arm2
 	//glPushMatrix;
