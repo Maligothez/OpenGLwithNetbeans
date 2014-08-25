@@ -37,25 +37,25 @@ void generateMap(vector<Geometry> &worldThings)
 
 	// This should really be replaced by a level loader to load
 	// and parse a description of the world from a file
-	
+
 	// assemble the excavator
 	Geometry testThing;
 
 	testThing.loadGeometry("resources\\excavator\\base.ASE");
 	testThing.setName((string)"excavator");
 	testThing.setColour(0.5,0.5,0.5);
-	
+
 	Geometry childGeometry;
 	childGeometry.loadGeometry("resources\\excavator\\wheel.ASE");
 	childGeometry.setName((string)"wheels");
 	childGeometry.setColour(0.2f,0.2f,0.2f);
-	
+
 	testThing.addChild(childGeometry);
 
 	childGeometry.loadGeometry("resources\\excavator\\turret.ASE");
 	childGeometry.setName((string)"turret");
 	childGeometry.setColour(0.3f,0.3f,0.3f);
-	
+
 	testThing.addChild(childGeometry);
 
 	childGeometry.loadGeometry("resources\\excavator\\arm.ASE");
@@ -68,7 +68,7 @@ void generateMap(vector<Geometry> &worldThings)
 	anotherChild.setName((string)"scoop");
 	anotherChild.setPosition(Vector3f(0, -4.063f, 8.814f), (string)"scoop");
 	anotherChild.setColour(0.6f,0.6f,0);
-	
+
 	childGeometry.addChild(anotherChild);
 
 	testThing.addChild(childGeometry);
@@ -77,7 +77,7 @@ void generateMap(vector<Geometry> &worldThings)
 
 
 	// add the houses to the level
-	
+
 	Geometry house;
 	house.setName((string)"house");
 	//house.loadGeometry("C:\\Users\\mmasek\\Desktop\\MaxExport\\simpleHouse.ASE");
@@ -114,7 +114,7 @@ void generateMap(vector<Geometry> &worldThings)
 	policeWindows.loadGeometry("resources\\policeCar\\window.ASE");
 	policeWindows.setColour(0.9f,0.9f,0.1f);
 	policeCar.addChild(policeWindows);
-	
+
 	Geometry policeKey;
 	policeKey.setName((string)"key");
 	policeKey.loadGeometry("resources\\policeCar\\key.ASE");
@@ -169,7 +169,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	Execution of our program starts here!  We have to set up the application we are
 	writing to handle messages (mouse clicks, key presses, etc.) and show a window.
 	THE ABOVE WILL BE DONE USING THE WindowCreator CLASS
-	
+
 	Set up for rendering -	THIS WILL BE DONE BY THE RendererOpenGL CLASS
 
 	Then do whatever we want the application to do
@@ -191,13 +191,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	-Game relevant objects are loaded in or initialised - not implemented in this version
 	*/
 
-	
+
 
 	// C R E A T E   T H E   W I N D O W
 	WindowCreator gameWindow; // get an instance of the WindowCreator class
-	
+
 	//gameWindow.askWindowSettings(); // ask user about full-screen mode, resolution, etc...
-	
+
 	HWND hGameWindow; // create a handle to reference the window with
 	hGameWindow = gameWindow.initialise(hInstance); // create the window and return a handle to it
 	// NOTE: The initialise member function/method of WindowCreator also creates the renderer
@@ -239,36 +239,31 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	//long sleepTime;
 
 	bool tabPressed = false;
-	
+
 	bool thirdPersonCamera = true;
 	int gameState = PLAYING;
 	bool exit = false;  // used to exit the game loop
-
+	char framerateText[60];
 
 	while (exit==false) // while we dont want to exit keep looping between message processing and running our game
 	{
 		exit = gameWindow.messagePump(); // process messages waiting in queue, returns false if the Quit message was received
 		// After processing messages, update our game 'state' and render.
-		
-		std::ostringstream oss;
-		  oss << "Bobcat Rampage! - FPS: " << performanceCounter.calculateFPS();
-		SetWindowText(hGameWindow, oss.str().c_str());
-		//SetWindowText(hGameWindow, performanceCounter.calculateFPS());	
+
+		sprintf(framerateText, "Bobcat Rampage! - FPS: %0.4f", performanceCounter.calculateFPS());
+		SetWindowText(hGameWindow, framerateText);	
 
 		bool status = bigExcavator.processKeyboardInput();
 
-		//status = bigExcavator.checkCollisions(worldThings);
-
-		  if((GetAsyncKeyState(VK_TAB ) & 0x8000) && (!tabPressed)){ 
-          
-	      tabPressed=true; 
-		  thirdPersonCamera = !thirdPersonCamera;
-          //toggle boolean on/off 
-		 } 
-		 //check if the key was released (key up) 
-			 else if(GetAsyncKeyState(VK_TAB) == 0) { 
-          tabPressed = false;//reset the flag 
-			}
+		if((GetAsyncKeyState(VK_TAB) & 0x8000) && (!tabPressed)){ 
+			tabPressed=true; 
+			//toggle boolean on/off 
+			thirdPersonCamera = !thirdPersonCamera;
+		} 
+		//check if the key was released (key up) 
+		else if(GetAsyncKeyState(VK_TAB) == 0) { 
+			tabPressed = false;//reset the flag 
+		}
 
 		// check collisions between excavator and other objects
 		for(vector<Geometry>::iterator i = worldThings.begin(); i<worldThings.end(); i++)
@@ -298,9 +293,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 			}
 		}
 
-
 		// update police car position and orientation
-		
+
 		for(vector<Geometry>::iterator i = worldThings.begin(); i<worldThings.end(); i++)
 		{
 			// the following code should really be moved to a class (eg. some kind of an 'update'
@@ -363,7 +357,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 					}
 				}
 
-
 				//
 				// At this point we have have a force vector that acts on the police car
 				// this tells us
@@ -374,7 +367,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 				// and only move in the forward direction) we rotate the car in the right direction
 				// by some increment, and move it forward.
 				//
-
 
 				// current position of the car
 				Vector3f newPosition = i->getPosition();
@@ -387,7 +379,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 				// get desired heading angle
 				heading = (1/heading.length())*heading; // normalize heading
 				float desiredAngleAroundY = (180/(float)pi)*acos(heading.x()); // get the angle in degrees (acos works in radians)
-				
+
 				// adjust for the quadrant we are in (acos is only good between 0 and 180 degrees)				
 				if (heading.z()>0)
 				{
@@ -400,7 +392,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 
 				// work out distance to turn (in degrees)
 				float turningDirection = desiredAngleAroundY - angleAroundY;
-				
+
 				// see if its a shorter to turn the other way
 				if (turningDirection>180)
 				{
@@ -434,16 +426,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 		// render the world
 		renderer->Render(bigExcavator, thirdPersonCamera,   worldThings); // call the renderers 'Render' method (from the RendererOpenGL class)
 	}
-	
+
 	/* 
 	If the program gets to this point it means the Quit message was posted - clean up,
 	release any allocated memory, and exit.
 	*/
 
 	/*
-	
-	
-	
+
 	************** P A R T   3   -   C L E A N   U P   *****************
 
 	Clean up:
@@ -453,7 +443,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	*/
 	// change screen and resolution back to default (gets out of full-screen mode if that was selected)
 	gameWindow.resetWindowSettings();
-	
+
 	// release the OpenGL rendering context
 	if (!renderer->releaseFromWindow()) //NOTE: part of the releaseFromWindow method is to delete the renderer class instance
 	{
