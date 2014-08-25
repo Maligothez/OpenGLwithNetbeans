@@ -1,5 +1,7 @@
 // 2005 - Martin Masek, Edith Cowan University
 
+#include <sstream> 
+
 class GameTimerHighPerformance
 {
 public:
@@ -56,6 +58,7 @@ double GameTimerHighPerformance::calculateFPS()
 	LARGE_INTEGER currentTime;
 	QueryPerformanceCounter(&currentTime);
 
+
 	//  Calculate time passed
 	secondsElapsed = (double)(currentTime.QuadPart - startTime.QuadPart)/(double)timerFrequency.QuadPart;
 
@@ -68,5 +71,6 @@ double GameTimerHighPerformance::calculateFPS()
 		//  Reset frame count
 		frameCount = 0;
 	}
+	
 	return fps;
 }

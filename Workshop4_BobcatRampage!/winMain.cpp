@@ -250,9 +250,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 		exit = gameWindow.messagePump(); // process messages waiting in queue, returns false if the Quit message was received
 		// After processing messages, update our game 'state' and render.
 		
-		fps =  performanceCounter.calculateFPS();
+		std::ostringstream oss;
+		  oss << "Bobcat Rampage! - FPS: " << performanceCounter.calculateFPS();
+		SetWindowText(hGameWindow, oss.str().c_str());
+		//SetWindowText(hGameWindow, performanceCounter.calculateFPS());	
 
 		bool status = bigExcavator.processKeyboardInput();
+
 		//status = bigExcavator.checkCollisions(worldThings);
 
 		  if((GetAsyncKeyState(VK_TAB ) & 0x8000) && (!tabPressed)){ 
