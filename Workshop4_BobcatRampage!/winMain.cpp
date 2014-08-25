@@ -233,10 +233,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	// declare variables for the timer function
 	//long elapsedTime;
 	//long sleepTime;
-	
-	int gameState = PLAYING;
 
+	bool tabPressed = false;
+	
+	bool thirdPersonCamera = true;
+	int gameState = PLAYING;
 	bool exit = false;  // used to exit the game loop
+
+
 	while (exit==false) // while we dont want to exit keep looping between message processing and running our game
 	{
 		exit = gameWindow.messagePump(); // process messages waiting in queue, returns false if the Quit message was received
@@ -246,6 +250,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 		bool status = bigExcavator.processKeyboardInput();
 		//status = bigExcavator.checkCollisions(worldThings);
 
+		  if((GetAsyncKeyState(VK_TAB ) & 0x8000) && (!tabPressed)){ 
+          
+	      tabPressed=true; 
+		  thirdPersonCamera = !thirdPersonCamera;
+          //toggle boolean on/off 
+		 } 
+		 //check if the key was released (key up) 
+			 else if(GetAsyncKeyState(VK_TAB) == 0) { 
+          tabPressed = false;//reset the flag 
+			}
 
 		// check collisions between excavator and other objects
 		for(vector<Geometry>::iterator i = worldThings.begin(); i<worldThings.end(); i++)
@@ -409,7 +423,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 		}
 
 		// render the world
-		renderer->Render(bigExcavator, worldThings); // call the renderers 'Render' method (from the RendererOpenGL class)
+		renderer->Render(bigExcavator, thirdPersonCamera,   worldThings); // call the renderers 'Render' method (from the RendererOpenGL class)
 	}
 	
 	/* 
