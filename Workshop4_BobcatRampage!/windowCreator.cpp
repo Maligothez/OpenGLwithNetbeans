@@ -137,6 +137,8 @@ HWND WindowCreator::initialise(HINSTANCE hInstance)
 	WindowRect.top=(long)0;
 	WindowRect.bottom=(long)height;
 	
+	
+	
 	WNDCLASSEX wc = {0}; // create a variable of the windows class structure type(initialised to 0)
 
 	// fill out the member variables of windows class structure
@@ -219,7 +221,7 @@ HWND WindowCreator::initialise(HINSTANCE hInstance)
 	hMainWindow = CreateWindowEx(
 								extendedWindowStyle, // 'extended style'
 								wc.lpszClassName, // name of the windows class that we just registered
-								"Bobcat rampage!", // This text will appear at the top of the window in the title bar
+								"Bobcat rampage!      "   , // This text will appear at the top of the window in the title bar
 								windowStyle, // Style of the window
 								0, // x coordinate of upper east window corner
 								0, // y coordinate of upper east window corner

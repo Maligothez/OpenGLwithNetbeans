@@ -108,13 +108,18 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Excavator.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="glew\glew.h" />
     <ClInclude Include="RendererOpenGL.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="windowCreator.h" />
     <ClInclude Include="ASELoader.h" />
     <ClInclude Include="gameTimerHighPerformance.h" />
     <ClInclude Include="Matrix4x4f.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vertex3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="framework.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -28,6 +28,8 @@ Modified: 11th August 2009 - Martin Masek - SCSS, Edith Cowan University
 #include <vector>
 #include "Geometry.h"
 
+
+
 using namespace std;
 
 void generateMap(vector<Geometry> &worldThings)
@@ -216,6 +218,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	vector<Geometry> worldThings;
 	generateMap(worldThings);
 
+	double fps;
+	GameTimerHighPerformance performanceCounter;
 
 
 
@@ -245,7 +249,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	{
 		exit = gameWindow.messagePump(); // process messages waiting in queue, returns false if the Quit message was received
 		// After processing messages, update our game 'state' and render.
-
+		
+		fps =  performanceCounter.calculateFPS();
 
 		bool status = bigExcavator.processKeyboardInput();
 		//status = bigExcavator.checkCollisions(worldThings);

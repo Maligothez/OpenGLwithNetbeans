@@ -9,15 +9,22 @@ public:
 	double getDeltaTime();
 	double getTime();
 	double getFrequency();
+	double calculateFPS();
+
 private:
 	LARGE_INTEGER timerFrequency;
 	LARGE_INTEGER startTime;
+	int frameCount;
+
+	double fps;
 };
 
 GameTimerHighPerformance::GameTimerHighPerformance()
 {
 	QueryPerformanceFrequency(&timerFrequency);
 	QueryPerformanceCounter(&startTime);
+	frameCount = 0;
+	fps = 0;
 }
 
 double GameTimerHighPerformance::getTime()
@@ -39,4 +46,27 @@ double GameTimerHighPerformance::getDeltaTime()
 	secondsElapsed = (double)(currentTime.QuadPart - startTime.QuadPart)/(double)timerFrequency.QuadPart;
 	startTime = currentTime;
 	return(secondsElapsed);
+}
+
+double GameTimerHighPerformance::calculateFPS()
+{
+	//  Increase frame count
+	double secondsElapsed;
+	frameCount++;
+	LARGE_INTEGER currentTime;
+	QueryPerformanceCounter(&currentTime);
+
+	//  Calculate time passed
+	secondsElapsed = (double)(currentTime.QuadPart - startTime.QuadPart)/(double)timerFrequency.QuadPart;
+
+	if(secondsElapsed > 1)
+	{
+		//  calculate the number of frames per second
+		fps = frameCount / secondsElapsed;
+		//  Set time
+		startTime = currentTime;
+		//  Reset frame count
+		frameCount = 0;
+	}
+	return fps;
 }
