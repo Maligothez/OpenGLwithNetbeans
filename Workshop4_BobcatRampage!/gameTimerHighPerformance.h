@@ -11,7 +11,7 @@ public:
 	double getDeltaTime();
 	double getTime();
 	double getFrequency();
-	double calculateFPS();
+	double calculateFPS(HWND gamewindow);
 
 private:
 	LARGE_INTEGER timerFrequency;
@@ -50,7 +50,7 @@ double GameTimerHighPerformance::getDeltaTime()
 	return(secondsElapsed);
 }
 
-double GameTimerHighPerformance::calculateFPS()
+double GameTimerHighPerformance::calculateFPS(HWND gamewindow)
 {
 	//  Increase frame count
 	double secondsElapsed;
@@ -70,6 +70,9 @@ double GameTimerHighPerformance::calculateFPS()
 		startTime = currentTime;
 		//  Reset frame count
 		frameCount = 0;
+		char framerateText[60];
+		sprintf(framerateText, "Bobcat Rampage! - FPS: %0.4f", fps);
+		SetWindowText(gamewindow, framerateText);	
 	}
 	
 	return fps;

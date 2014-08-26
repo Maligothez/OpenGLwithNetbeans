@@ -243,16 +243,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpComdLin
 	bool thirdPersonCamera = true;
 	int gameState = PLAYING;
 	bool exit = false;  // used to exit the game loop
-	char framerateText[60];
 
 	while (exit==false) // while we dont want to exit keep looping between message processing and running our game
 	{
 		exit = gameWindow.messagePump(); // process messages waiting in queue, returns false if the Quit message was received
 		// After processing messages, update our game 'state' and render.
-
-		sprintf(framerateText, "Bobcat Rampage! - FPS: %0.4f", performanceCounter.calculateFPS());
-		SetWindowText(hGameWindow, framerateText);	
-
+		performanceCounter.calculateFPS(hGameWindow);
 		bool status = bigExcavator.processKeyboardInput();
 
 		if((GetAsyncKeyState(VK_TAB) & 0x8000) && (!tabPressed)){ 
