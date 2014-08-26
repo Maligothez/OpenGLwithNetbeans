@@ -17,8 +17,11 @@ private:
 	LARGE_INTEGER timerFrequency;
 	LARGE_INTEGER startTime;
 	int frameCount;
-
+	char framerateText[60];
 	double fps;
+	LARGE_INTEGER currentTime;
+	double secondsElapsed;
+
 };
 
 GameTimerHighPerformance::GameTimerHighPerformance()
@@ -53,15 +56,10 @@ double GameTimerHighPerformance::getDeltaTime()
 double GameTimerHighPerformance::calculateFPS(HWND gamewindow)
 {
 	//  Increase frame count
-	double secondsElapsed;
 	frameCount++;
-	LARGE_INTEGER currentTime;
 	QueryPerformanceCounter(&currentTime);
-
-
 	//  Calculate time passed
 	secondsElapsed = (double)(currentTime.QuadPart - startTime.QuadPart)/(double)timerFrequency.QuadPart;
-
 	if(secondsElapsed > 1)
 	{
 		//  calculate the number of frames per second
@@ -70,10 +68,16 @@ double GameTimerHighPerformance::calculateFPS(HWND gamewindow)
 		startTime = currentTime;
 		//  Reset frame count
 		frameCount = 0;
-		char framerateText[60];
 		sprintf(framerateText, "Bobcat Rampage! - FPS: %0.4f", fps);
 		SetWindowText(gamewindow, framerateText);	
 	}
-	
+
+	/*if (frameCount == 100){
+
+	sprintf(framerateText, "Bobcat Rampage! - FPS: %0.4f", frameCount/getDeltaTime());
+	SetWindowText(gamewindow, framerateText);
+	frameCount = 0;
+	}*/
+
 	return fps;
 }

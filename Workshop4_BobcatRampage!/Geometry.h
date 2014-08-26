@@ -313,32 +313,29 @@ public:
 
 		// make the buffer object current as an array buffer (used to store vertex data)
 		glBindBuffer(GL_ARRAY_BUFFER, mBufferVertList);
-
 		// reserve some space in memory for the vertex data (uses the current buffer - i.e.. the one referred to in the previous glBindBuffer line)
 		// 3*sizeof(GLfloat)*(3+3) ??? - this is the amount of memory we are reserving.
 		// 3 vertices, each one has 3 Glfloats to represent position and 3 GL gloats to represent colour
 		// the sizeof() function gives us the amount of memory taken by a particular type
 		// ie. after this, we have room for 3*(3+3) == 18 GLfloats in the buffer.
-		glBufferData(GL_ARRAY_BUFFER, m_triangleIndices.size()*sizeof(GLfloat)*(3+0+3), NULL, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, mNumberOfVertices*sizeof(GLfloat)*(3+0+3), NULL, GL_STATIC_DRAW);
 
 		// this maps our buffer (video memory) to main memory, through the variable
 		//  vertBuff. Modifying vertBuff modifies video memory!
 		GLfloat *vertBuff = (GLfloat *)glMapBuffer(GL_ARRAY_BUFFER,GL_WRITE_ONLY);
 
 		int vertIndex = 0;
+
 		for each (int i in m_triangleIndices)
 		{
 			vertBuff[vertIndex++] = m_vertexCoordinates[i].x();
 			vertBuff[vertIndex++] = m_vertexCoordinates[i].y();
 			vertBuff[vertIndex++] = m_vertexCoordinates[i].z();
-		}
-
-		for each (int i in m_triangleIndices)
-		{
 			vertBuff[vertIndex++] = m_colour.x();
 			vertBuff[vertIndex++] = m_colour.y();
 			vertBuff[vertIndex++] = m_colour.z();
 		}
+
 		// unmap the buffer - this break the connection between vertBuff and video memory
 		// you must do this before drawing the buffer
 		glUnmapBuffer(GL_ARRAY_BUFFER);
@@ -349,11 +346,11 @@ public:
 
 		// Each vertex has 3 components, is a GLfloat, stride is 0 (dont have to jump over memory to get to the next vertex)
 		// and the vertices begin at the beginning of the buffer - (float *)NULL
-		glVertexPointer(3, GL_FLOAT, 0, (float *)NULL);
+		glVertexPointer(3, GL_FLOAT, 24, (float *)NULL);
 
 		// the colours begin after the vertices, so from the start of the buffer
 		// jump forward by numberOfVertices*3 (because each vertex has 3 components)
-		glColorPointer(3, GL_FLOAT, 0,(float *)NULL + m_triangleIndices.size()*3);
+		glColorPointer(3, GL_FLOAT, 24,(float *)NULL + 3);
 	}
 	
 	void drawOpenGLVertexBufferObject()
@@ -382,11 +379,11 @@ public:
 
 		// Each vertex has 3 components, is a GLfloat, stride is 0 (dont have to jump over memory to get to the next vertex)
 		// and the vertices begin at the beginning of the buffer - (float *)NULL
-		glVertexPointer(3, GL_FLOAT, 0, (float *)NULL);
+		glVertexPointer(3, GL_FLOAT, 24, (float *)NULL);
 
 		// the colours begin after the vertices, so from the start of the buffer
 		// jump forward by numberOfVertices*3 (because each vertex has 3 components)
-		glColorPointer(3, GL_FLOAT, 0, (float *)NULL + m_triangleIndices.size() * 3);
+		glColorPointer(3, GL_FLOAT, 24, (float *)NULL + 3);
 		
 		// draw all the vertices, connected up as triangles
 		glDrawArrays(GL_TRIANGLES, 0, mNumberOfVertices);
