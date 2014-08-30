@@ -307,9 +307,9 @@ void RendererOpenGL::Render(Excavator &bigExcavator, bool thirdPersonCamera,  ve
 	glTranslatef(0,-cameraHeight,-cameraDistance);
 	}
 	else {
-		glTranslatef(-10  ,0 , 0 );
+		//glTranslatef(-10  ,0 , 0 );
 		glRotatef(-angleAroundY,0,1,0);
-		glTranslatef(-ExcavatorX  , -5, -ExcavatorZ  );
+		glTranslatef(-ExcavatorX  , -10, -ExcavatorZ  );
 	}
 
 
